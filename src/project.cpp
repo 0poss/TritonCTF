@@ -25,11 +25,8 @@ Project::Project(const char *filename) {
 }
 
 std::unique_ptr<Executor> Project::CreateExecutor() {
-  // std::unique_ptr<Executor> executor =
-  //     std::make_unique<Executor>(binary_, entrypoint_, default_stack_base_);
-  Executor *exec = new Executor(binary_, entrypoint_, default_stack_base_);
-  std::unique_ptr<Executor> executor;
-  executor.reset(exec);
+  std::unique_ptr<Executor> executor =
+      std::make_unique<Executor>(binary_, entrypoint_, default_stack_base_);
 
   if (!executor->IsValid())
     return nullptr;
